@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+//$font-primary: 'Plus Jakarta Sans', sans-serif;
+$font-primary: 'Montserrat', sans-serif;
+
+$black: hsl(0, 0%, 0%);
+$white: hsl(0, 0%, 100%);
+$gray: rgb(42, 42, 42);
+$gray-light: rgb(124, 124, 124);
+
+$minor: hsl(252, 100%, 65%);
+$moderate: hsl(29, 100%, 50%);
+$major: hsl(4, 82%, 51%);
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+*:focus-visible {
+    outline: .4rem solid rgba($moderate, 0.253);
+    z-index: 30;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+}
+
+input,
+textarea,
+button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+.map {
+    height: 100vh;
+    z-index: 10;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.mapboxgl-ctrl-group,
+.mapboxgl-popup-content,
+.react-datepicker,
+.menu {
+    font-family: $font-primary;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $white;
+
+    box-shadow: rgb(0 0 0 / 10%) 0px 1px 2px;
+    background-color: rgba($black, .8);
+    backdrop-filter: blur(.5rem);
+}
+
+.menu {
+    position: relative;
+    border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
+    z-index: 30;
+
+    &__checkbox {
+        display: none;
+
+        &:not(:checked)~.menu__container {
+            max-height: 0;
+        }
+
+        &:not(:checked)+.menu__toggle .menu__toggle-icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: .5rem;
+        color: $white;
+        font-size: 2rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &-icon {
+            transition: transform .3s ease;
+        }
+    }
+
+    &__content {
+        padding: 2rem;
+    }
+
+    &__container {
+        max-height: 35rem;
+        transition: max-height .3s ease;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 3rem;
+    }
+
+    &__heading {
+        font-weight: 600;
+        margin-bottom: .3rem;
+    }
+
+    &__subheading {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: $gray-light;
+    }
+}
+
+.timeline {
+    padding-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 20rem;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 1.8rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        //margin-block: 1.2rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $gray;
+        border-radius: 100vmax;
+        border: .7rem solid transparent;
+        background-clip: padding-box;
+    }
+
+    &__item {
+        background-color: transparent;
+        display: flex;
+
+        &-marker {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &-dot {
+                width: .9rem;
+                height: .9rem;
+                background-color: transparent;
+                border: .3rem solid $moderate;
+                border-radius: 50%;
+            }
+
+            &-border {
+                width: .2rem;
+                flex: 1;
+                background-color: $gray;
+                border-radius: 100vmax;
+            }
+        }
+    }
+
+    &__content {
+        margin: .5rem;
+    }
+}
+
+.item {
+    flex: 1;
+    background-color: transparent;
+    text-align: start;
+    padding: .7rem;
+    border-radius: .7rem;
+    border: none;
+    transform: translateY(-1.4rem);
+    transition: all .3s ease;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-1.6rem);
+    }
+
+    &__time {
+        display: block;
+        margin-bottom: .5rem;
+        color: $gray-light;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__heading {
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: start;
+        margin-right: auto;
+    }
+
+    &__tag {
+        border-radius: 100vmax;
+        padding: .4rem .8rem;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        white-space: nowrap;
+
+        &--minor {
+            color: $minor;
+            background-color: rgba($minor, .1);
+        }
+
+        &--moderate {
+            color: $moderate;
+            background-color: rgba($moderate, .1);
+        }
+
+        &--major {
+            color: $major;
+            background-color: rgba($major, .1);
+        }
+    }
+
+    &__arrow {
+        font-size: 1.5rem;
+    }
+}
+
+.date-picker {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+        position: relative;
+        width: 10rem;
+        background: transparent;
+        border: none;
+        text-align: end;
+        padding: .3rem;
+        padding-right: 2.5rem;
+        font-size: 1.2rem;
+        border-radius: .7rem;
+
+        z-index: 10;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__icon {
+        font-size: 1.8rem;
+        color: $gray-light;
+        position: absolute;
+        right: 0;
+    }
+}
+
+.react-datepicker {
+    border: none;
+    border-radius: .7rem;
+    background-color: rgba($black, .6);
+    padding: 1rem;
+
+    &-popper {
+        z-index: 20;
+    }
+
+    &__header {
+        background-color: transparent;
+        padding-bottom: 1.4rem;
+        border-bottom: .1rem solid $gray;
+    }
+
+    &__navigation {
+        top: 1.1rem;
+
+        &-icon--previous {
+            right: 0;
+        }
+
+        &-icon--next {
+            left: 0;
+        }
+    }
+
+    &__day,
+    &__day-name,
+    &__current-month {
+        color: $white;
+        font-size: inherit;
+        text-transform: capitalize;
+    }
+
+    &__current-month {
+        margin-bottom: .7rem;
+    }
+
+    &__day,
+    &__day-name {
+        margin: .5rem;
+    }
+
+    &__day {
+
+        &:hover,
+        &--selected,
+        &--keyboard-selected {
+            background-color: $gray;
+            border-radius: .3rem;
+        }
+
+        &--disabled {
+            color: $gray-light;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+
+}
+
+.source-picker {
+    padding: .7rem;
+    background-color: $gray;
+    border-radius: 1rem;
+    margin-block: 2rem;
+
+    &__container {
+        position: relative;
+        display: flex;
+    }
+
+    &__radio {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        appearance: none;
+        border-radius: .7rem;
+
+        &#usgs {
+            left: 50%;
+        }
+
+        &#usgs:checked~.source-picker__slider {
+            left: 50%;
+        }
+
+        &:not(:checked)+.source-picker__label:hover {
+            background-color: rgb(49, 49, 49);
+        }
+    }
+
+    &__label {
+        flex: 1;
+        text-align: center;
+        z-index: 10;
+        padding: 1rem;
+        border-radius: .7rem;
+        transition: background-color .3s ease;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__slider {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        transition: left .3s ease;
+        border-radius: .7rem;
+        background-color: $black;
+    }
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+.mapboxgl-popup {
+
+    &-content {
+        border-radius: 1rem;
+        padding: 2rem 2.3rem;
+
+        &__heading {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        &__body {
+            display: flex;
+            flex-direction: column;
+
+            color: $gray-light;
+            font-weight: 600;
+        }
+    }
+
+    &-anchor {
+
+        &-top .mapboxgl-popup-tip,
+        &-top-left .mapboxgl-popup-tip,
+        &-top-right .mapboxgl-popup-tip {
+            border-bottom-color: rgba($black, .8);
+        }
+
+        &-bottom .mapboxgl-popup-tip,
+        &-bottom-left .mapboxgl-popup-tip,
+        &-bottom-right .mapboxgl-popup-tip {
+            border-top-color: rgba($black, .8);
+        }
+
+        &-left .mapboxgl-popup-tip {
+            border-right-color: rgba($black, .8);
+        }
+
+        &-right .mapboxgl-popup-tip {
+            border-left-color: rgba($black, .8);
+        }
+    }
+
+}
+
+.mapboxgl-ctrl {
+
+    &-zoom-in &-icon,
+    &-zoom-out &-icon,
+    &-compass &-icon {
+        filter: invert(1) contrast(50%);
+    }
+
+    &-group {
+        padding: .4rem;
+
+        & button+button {
+            border-top: .1rem solid rgba($gray-light, .3);
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 2rem;
+    }
+
+    .menu {
+        border-radius: 1rem;
+
+        &__toggle {
+            display: none;
+        }
+
+        &__checkbox:not(:checked)~&__container,
+        &__container {
+            max-height: 60rem;
+        }
+    }
+
+    .timeline {
+        max-height: 40rem;
+    }
+}
