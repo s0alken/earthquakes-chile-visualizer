@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { useMap } from '../context/MapProvider';
 import usePulsingDot from '../hooks/usePulsingDot';
 import useFlyToCoordinates from '../hooks/useFlyToCoordinates';

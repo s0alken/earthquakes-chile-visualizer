@@ -1,5 +1,5 @@
 import { useMap } from "../context/MapProvider";
-import mapboxgl from "mapbox-gl";
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 function useCreatePopup() {
 
