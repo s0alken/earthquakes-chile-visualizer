@@ -36,6 +36,7 @@ function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelected
                                     onChange={(date) => { setSelectedDate(date) }}
                                     dateFormat="dd-MM-yyyy"
                                     maxDate={new Date()}
+                                    onFocus={e => e.target.readOnly = true}
                                 />
                                 <i className="uil uil-calendar-alt date-picker__icon"></i>
                             </div>
