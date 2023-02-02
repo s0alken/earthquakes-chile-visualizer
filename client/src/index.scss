@@ -25,8 +25,7 @@ $major: hsl(4, 82%, 51%);
     z-index: 30;
 }
 
-html,
-body {
+html, body, #root, .map {
     height: 100%;
 }
 
@@ -49,7 +48,6 @@ button {
 }
 
 .map {
-    height: 100vh;
     z-index: 10;
 }
 
@@ -58,7 +56,7 @@ button {
     top: 0;
     left: 0;
     right: 0;
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     justify-content: center;
