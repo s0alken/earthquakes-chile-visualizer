@@ -25,7 +25,10 @@ $major: hsl(4, 82%, 51%);
     z-index: 30;
 }
 
-html, body, #root, .map {
+html,
+body,
+#root,
+.map {
     height: 100%;
 }
 
@@ -45,6 +48,7 @@ button {
     font-size: inherit;
     font-weight: inherit;
     color: inherit;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .map {
@@ -151,10 +155,6 @@ button {
         width: 1.8rem;
     }
 
-    &::-webkit-scrollbar-track {
-        //margin-block: 1.2rem;
-    }
-
     &::-webkit-scrollbar-thumb {
         background: $gray;
         border-radius: 100vmax;
@@ -204,9 +204,11 @@ button {
     transform: translateY(-1.4rem);
     transition: all .3s ease;
 
-    &:hover {
-        cursor: pointer;
-        transform: translateY(-1.6rem);
+    @media not all and (hover: none) {
+        &:hover {
+            cursor: pointer;
+            transform: translateY(-1.6rem);
+        }
     }
 
     &__time {
