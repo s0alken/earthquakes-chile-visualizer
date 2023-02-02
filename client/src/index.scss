@@ -25,13 +25,17 @@ $major: hsl(4, 82%, 51%);
     z-index: 30;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 html {
     box-sizing: border-box;
     font-size: 62.5%;
 }
 
 body {
-    min-height: 100vh;
     position: relative;
 }
 
