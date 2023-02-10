@@ -4,6 +4,7 @@ import { useMap } from '../context/MapProvider';
 import usePulsingDot from '../hooks/usePulsingDot';
 import useFlyToCoordinates from '../hooks/useFlyToCoordinates';
 import useCreatePopup from '../hooks/useCreatePopup';
+import smoothScrollIntoView from 'scroll-into-view-if-needed'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -75,7 +76,7 @@ function Map({ data }) {
                 }
             });
 
-            if(data.features.length) createPopup(data.features[0]);
+            if (data.features.length) createPopup(data.features[0]);
             document.querySelector('.timeline__item')?.classList.add('active');
 
         });
@@ -103,10 +104,14 @@ function Map({ data }) {
 
             const item = document.getElementById(clickedPoint.properties.id);
 
-            item.scrollIntoView({
+            smoothScrollIntoView(item, {
+                scrollMode: 'if-needed',
                 behavior: 'smooth',
-                block: 'center'
-            });
+                block: 'center',
+                inline: 'nearest',
+                boundary: document.querySelector('.timeline')
+              })
+              
 
             item.classList.add('active');
 

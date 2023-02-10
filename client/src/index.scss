@@ -176,7 +176,7 @@ button {
         display: flex;
 
         &.active .timeline__content{
-            border: .2rem solid rgba($moderate, .2);
+            border: .2rem solid $moderate;
         }
 
         &-marker {
