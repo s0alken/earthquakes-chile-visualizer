@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { nanoid } from 'nanoid';
 
 const convertUTCDateToLocalDate = (date) => {
     return new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
@@ -46,6 +47,7 @@ const fetchFromUSGS = async (date) => {
         const utcDateTime = formatDate(dateTime);
 
         const properties = {
+            id: nanoid(),
             reference: reference.replace(', Chile', ''),
             localDateTime,
             utcDateTime,

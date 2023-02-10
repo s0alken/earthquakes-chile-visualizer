@@ -1,4 +1,5 @@
 import axios from "axios";
+import { nanoid } from 'nanoid';
 import jsdom from "jsdom";
 const { JSDOM } = jsdom;
 
@@ -30,6 +31,7 @@ const fetchFromCSN = async (date) => {
                 "coordinates": tds[2].textContent.split(' ').reverse().map(Number)
             },
             "properties": {
+                id: nanoid(),
                 reference: tds[0].textContent.slice(19),
                 localDateTime: tds[0].textContent.slice(0, 19),
                 utcDateTime: tds[1].textContent,

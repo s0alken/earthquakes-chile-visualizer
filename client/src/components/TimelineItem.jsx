@@ -23,10 +23,18 @@ function TimelineItem({ feature }) {
     const handleItemClick = () => {
         flyToCoordinates(feature);
         createPopup(feature);
+
+        document.querySelectorAll('.timeline__item').forEach(item => {
+            item.classList.remove('active');
+        })
+
+        const item = document.getElementById(feature.properties.id);
+
+        item.classList.add('active');
     }
 
     return (
-        <div className="timeline__item">
+        <div className="timeline__item" id={feature.properties.id}>
             <div className="timeline__item-marker">
                 <div className="timeline__item-marker-dot"></div>
                 <div className="timeline__item-marker-border"></div>

@@ -1,6 +1,7 @@
 import TimelineItem from "./TimelineItem";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import Loader from "./Loader";
+import ErrorBox from "./ErrorBox";
 import es from 'date-fns/locale/es';
 registerLocale('es', es);
 
@@ -37,6 +38,7 @@ function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelected
                                     dateFormat="dd-MM-yyyy"
                                     maxDate={new Date()}
                                     onFocus={e => e.target.readOnly = true}
+                                    portalId="root"
                                 />
                                 <i className="uil uil-calendar-alt date-picker__icon"></i>
                             </div>
@@ -68,12 +70,14 @@ function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelected
                             </div>
                         </div>
 
-                        <div className="timeline">
-                            {isLoading ? <Loader /> :
-                                data.features.map((feature, idx) => {
-                                    return <TimelineItem key={idx} feature={feature} />
+                        {isLoading ? <Loader /> : !data.features.length ? <ErrorBox>Ups! Nada encontrado</ErrorBox> :
+                            <div className="timeline">
+                                {data.features.map((feature) => {
+                                    return <TimelineItem key={feature.properties.id} feature={feature} />
                                 })}
-                        </div>
+                            </div>
+                        }
+
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ function Map({ data }) {
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/s0alken/clccfip7z005415qs2xbiakcf',
-            center: data.features[0].geometry.coordinates,
+            center: data.features.length ? data.features[0].geometry.coordinates : [-70.673676, -33.447487],
             zoom: 7,
             pitch: 40,
             bearing: -40
@@ -75,6 +75,9 @@ function Map({ data }) {
                 }
             });
 
+            if(data.features.length) createPopup(data.features[0]);
+            document.querySelector('.timeline__item')?.classList.add('active');
+
         });
 
         map.on('mouseenter', 'pulsing-dot-layer', () => {
@@ -93,6 +96,19 @@ function Map({ data }) {
             if (!features.length) return;
 
             const clickedPoint = features[0];
+
+            document.querySelectorAll('.timeline__item').forEach(item => {
+                item.classList.remove('active');
+            })
+
+            const item = document.getElementById(clickedPoint.properties.id);
+
+            item.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+
+            item.classList.add('active');
 
             flytoCoordinates(clickedPoint);
             createPopup(clickedPoint);

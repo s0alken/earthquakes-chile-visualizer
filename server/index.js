@@ -9,15 +9,21 @@ const PORT = process.env.PORT || 5000;
 
 app.get('/', async (req, res) => {
 
-    const { date, source } = req.query;
+    try {
+        const { date, source } = req.query;
 
-    const dateObject = date ? new Date(`${date}T00:00`) : new Date();
+        const newDate = new Date(`${date}T00:00`);
 
-    const fetchSource = !source || source === 'csn' ? fetchFromCSN : fetchFromUSGS;
+        const dateObject = newDate.toString() !== 'Invalid Date' ? newDate : new Date();
 
-    const results = await fetchSource(dateObject);
+        const fetchSource = source !== 'usgs' ? fetchFromCSN : fetchFromUSGS;
 
-    res.json(results);
+        const results = await fetchSource(dateObject);
+
+        res.status(200).json(results);
+    } catch (error) {
+        res.status(500).send('There was an error')
+    }
 
 });
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../api';
 import Map from './Map';
 import Menu from './Menu';
+import LoadingScreen from './LoadingScreen';
 import { MapProvider } from '../context/MapProvider';
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
 
+    const fetchData = async () => {
       setIsLoading(true);
 
       const day = selectedDate.getDate().toString().padStart(2, '0');
@@ -33,25 +34,26 @@ function App() {
 
       setData(response.data);
       setIsLoading(false);
+
     }
 
     fetchData();
   }, [selectedDate, selectedSource]);
 
   return (
-    data &&
-    <MapProvider map={map} setMap={setMap}>
-      <Map data={data} />
-      <Menu
-        data={data}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        selectedSource={selectedSource}
-        setSelectedSource={setSelectedSource}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-      />
-    </MapProvider>
+    !data ? <LoadingScreen /> :
+      <MapProvider map={map} setMap={setMap}>
+        <Map data={data} />
+        <Menu
+          data={data}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          selectedSource={selectedSource}
+          setSelectedSource={setSelectedSource}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+        />
+      </MapProvider>
   )
 }
 
