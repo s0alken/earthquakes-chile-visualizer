@@ -8,7 +8,7 @@ import smoothScrollIntoView from 'scroll-into-view-if-needed'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
-function Map({ data }) {
+function Map({ data, setIsActive }) {
     const mapContainer = useRef(null);
     const { map, setMap } = useMap();
 
@@ -49,9 +49,10 @@ function Map({ data }) {
         setMap(map);
 
         return () => {
-            map.remove()
-            window.removeEventListener('resize', handleWindowResize)
+            map.remove();
+            window.removeEventListener('resize', handleWindowResize);
         };
+
     }, [data, setMap]);
 
     useEffect(() => {
@@ -76,9 +77,11 @@ function Map({ data }) {
                 }
             });
 
-            if (data.features.length) createPopup(data.features[0]);
-            document.querySelector('.timeline__item')?.classList.add('active');
-
+            if (data.features.length) {
+                setIsActive(data.features[0]);
+                createPopup(data.features[0]);
+            };
+    
         });
 
         map.on('mouseenter', 'pulsing-dot-layer', () => {
@@ -98,10 +101,6 @@ function Map({ data }) {
 
             const clickedPoint = features[0];
 
-            document.querySelectorAll('.timeline__item').forEach(item => {
-                item.classList.remove('active');
-            })
-
             const item = document.getElementById(clickedPoint.properties.id);
 
             smoothScrollIntoView(item, {
@@ -110,17 +109,15 @@ function Map({ data }) {
                 block: 'center',
                 inline: 'nearest',
                 boundary: document.querySelector('.timeline')
-              })
-              
-
-            item.classList.add('active');
+            })
 
             flytoCoordinates(clickedPoint);
             createPopup(clickedPoint);
+            setIsActive(clickedPoint);
 
         });
 
-    }, [data, map, pulsingDot, flytoCoordinates, createPopup])
+    }, [data, map, pulsingDot, flytoCoordinates, createPopup, setIsActive])
 
     return (
         <div ref={mapContainer} className="map" />

@@ -12,6 +12,7 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedSource, setSelectedSource] = useState('csn');
   const [isLoading, setIsLoading] = useState(false);
+  const [isActive, setIsActive] = useState(null);
 
   useEffect(() => {
 
@@ -43,7 +44,11 @@ function App() {
   return (
     !data ? <LoadingScreen /> :
       <MapProvider map={map} setMap={setMap}>
-        <Map data={data} />
+        <Map
+          data={data}
+          isActive={isActive}
+          setIsActive={setIsActive}
+        />
         <Menu
           data={data}
           selectedDate={selectedDate}
@@ -52,6 +57,8 @@ function App() {
           setSelectedSource={setSelectedSource}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
+          isActive={isActive}
+          setIsActive={setIsActive}
         />
       </MapProvider>
   )

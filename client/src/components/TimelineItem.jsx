@@ -5,7 +5,7 @@ const getMagnitudeTagClass = m => {
     return m <= 4 ? 'minor' : m <= 6 ? 'moderate' : 'major';
 }
 
-function TimelineItem({ feature }) {
+function TimelineItem({ feature, isActive, setIsActive }) {
 
     const {localDateTime, reference, magnitude} = feature.properties;
     const [date, time] = localDateTime.split(' ');
@@ -23,18 +23,13 @@ function TimelineItem({ feature }) {
     const handleItemClick = () => {
         flyToCoordinates(feature);
         createPopup(feature);
-
-        document.querySelectorAll('.timeline__item').forEach(item => {
-            item.classList.remove('active');
-        })
-
-        const item = document.getElementById(feature.properties.id);
-
-        item.classList.add('active');
+        setIsActive(feature);
     }
 
+    const className = isActive?.properties.id === feature.properties.id ? 'timeline__item active' : 'timeline__item'; 
+
     return (
-        <div className="timeline__item" id={feature.properties.id}>
+        <div className={className} id={feature.properties.id}>
             <div className="timeline__item-marker">
                 <div className="timeline__item-marker-dot"></div>
                 <div className="timeline__item-marker-border"></div>

@@ -5,7 +5,7 @@ import ErrorBox from "./ErrorBox";
 import es from 'date-fns/locale/es';
 registerLocale('es', es);
 
-function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelectedSource, isLoading }) {
+function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelectedSource, isLoading, isActive, setIsActive }) {
 
     const handleRadioChange = event => {
         if (event.target.checked) {
@@ -73,7 +73,14 @@ function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelected
                         {isLoading ? <Loader /> : !data.features.length ? <ErrorBox>Ups! Nada encontrado</ErrorBox> :
                             <div className="timeline">
                                 {data.features.map((feature) => {
-                                    return <TimelineItem key={feature.properties.id} feature={feature} />
+                                    return (
+                                        <TimelineItem
+                                            key={feature.properties.id}
+                                            feature={feature}
+                                            isActive={isActive}
+                                            setIsActive={setIsActive}
+                                        />
+                                    )
                                 })}
                             </div>
                         }

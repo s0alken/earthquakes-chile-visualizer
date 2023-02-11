@@ -175,7 +175,7 @@ button {
         background-color: transparent;
         display: flex;
 
-        &.active .timeline__content{
+        &.active .item{
             border: .2rem solid $moderate;
         }
 
@@ -186,11 +186,11 @@ button {
             align-items: center;
 
             &-dot {
-                width: .9rem;
-                height: .9rem;
+                width: .6rem;
+                height: .6rem;
                 background-color: transparent;
-                border: .3rem solid $moderate;
-                border-radius: 50%;
+                border: .2rem solid $moderate;
+                border-radius: 100%;
             }
 
             &-border {
