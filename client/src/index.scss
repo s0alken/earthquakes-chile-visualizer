@@ -154,7 +154,6 @@ button {
 }
 
 .timeline {
-    padding-top: 1.2rem;
     display: flex;
     flex-direction: column;
     max-height: 20rem;
@@ -174,9 +173,14 @@ button {
     &__item {
         background-color: transparent;
         display: flex;
+        gap: .3rem;
+
+        &:not(& ~ &) {
+            margin-top: 1.7rem;
+        }
 
         &.active .item{
-            border: .3rem solid $moderate;
+            border: .2rem solid $moderate;
         }
 
         &-marker {
@@ -201,17 +205,16 @@ button {
             }
         }
     }
-
-    &__content {
-        margin: .5rem;
-    }
 }
 
 .item {
     flex: 1;
     background-color: transparent;
     text-align: start;
-    padding: .7rem;
+    padding: 1rem;
+    padding-bottom: 1.1rem;
+    margin-inline: .5rem;
+    margin-bottom: .3rem;
     border-radius: .7rem;
     border: none;
     transform: translateY(-1.4rem);
@@ -373,7 +376,8 @@ button {
     padding: .7rem;
     background-color: $gray;
     border-radius: 1rem;
-    margin-block: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 
     &__container {
         position: relative;

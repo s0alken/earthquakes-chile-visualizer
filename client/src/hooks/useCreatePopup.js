@@ -29,7 +29,6 @@ function useCreatePopup() {
         return new mapboxgl.Popup(options)
             .setLngLat(coordinates)
             .setHTML(popupHTML)
-            .addClassName('lala')
             .addTo(map)
     }
 }
