@@ -70,7 +70,7 @@ function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelected
                             </div>
                         </div>
 
-                        {isLoading ? <Loader /> : !data.features.length ? <ErrorBox>Ups! Nada encontrado</ErrorBox> :
+                        {isLoading ? <Loader /> : !data.features.length ? <ErrorBox>Ups! Nada encontrado...</ErrorBox> :
                             <div className="timeline">
                                 {data.features.map((feature) => {
                                     return (
