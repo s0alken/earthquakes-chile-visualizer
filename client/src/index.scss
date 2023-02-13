@@ -165,7 +165,7 @@ button {
     }
 
     &::-webkit-scrollbar-thumb {
-        background: $gray;
+        background-color: $gray;
         border-radius: 100vmax;
         border: .7rem solid transparent;
         background-clip: padding-box;
@@ -174,7 +174,7 @@ button {
     &__item {
         background-color: transparent;
         display: flex;
-        gap: .3rem;
+        gap: .6rem;
 
         &.active .item{
             border: .2rem solid $moderate;
@@ -210,8 +210,6 @@ button {
     text-align: start;
     padding-top: .9rem;
     padding: 1rem;
-    margin: .4rem;
-    margin-top: 0;
     border-radius: .7rem;
     border: none;
     transform: translateY(-1.4rem);
