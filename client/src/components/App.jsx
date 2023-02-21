@@ -33,7 +33,9 @@ function App() {
           }
         });
 
-      setData(response.data);
+      const mapData = response.status === 200 ? response.data : { "type": "FeatureCollection", features: [] };
+
+      setData(mapData);
       setIsLoading(false);
 
     }
