@@ -13,7 +13,7 @@ A project to visualize earthquakes in Chile on an interactive map. Users can exp
  - [Node](https://nodejs.org/en/)
 
 ## How it works
-It uses a simple web scraper that fetches data from [Centro Sismológico Nacional](https://www.sismologia.cl/) and the API from [USGS](https://earthquake.usgs.gov/fdsnws/event/1/). On top of that, it uses an [Express](https://expressjs.com/) API to filter data by date and source.
+It uses a simple web scraper that fetches data from [Centro Sismológico Nacional](https://www.sismologia.cl/) and the API from [USGS](https://earthquake.usgs.gov/fdsnws/event/1/). On top of that, it uses an [Express](https://expressjs.com/) API to filter earthquakes by date and source.
 
 ## Running Locally
 
