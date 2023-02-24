@@ -3,6 +3,8 @@
 
 A project to visualize earthquakes in Chile on an interactive map. Users can explore and filter earthquakes based on different dates and sources. The map also displays additional information about each earthquake, such as its magnitude, depth, and location. Users can interact with the map to zoom in and out and click on individual earthquake markers to see more details. Visit the live demo [HERE](https://earthquakes-chile-visualizer.netlify.app/).
 
+![screenshot](https://user-images.githubusercontent.com/57046544/221298703-76bf3238-5496-4b7b-9f76-8616f67e19dd.png)
+
 ## Technologies used
  - [React](https://es.reactjs.org/)
  - [Mapbox](https://www.mapbox.com/)
