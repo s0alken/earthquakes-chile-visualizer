@@ -1,7 +1,7 @@
 
 # Earthquakes Chile Visualizer
 
-A project to visualize earthquakes in Chile on an interactive map. Users can explore and filter earthquakes based on different dates and sources. The map also displays additional information about each earthquake, such as its magnitude, depth, and location. Users can interact with the map to zoom in and out and click on individual earthquake markers to see more details. Visit the live demo [HERE](https://awesomeopensource.com/project/elangosundar/awesome-README-templates).
+A project to visualize earthquakes in Chile on an interactive map. Users can explore and filter earthquakes based on different dates and sources. The map also displays additional information about each earthquake, such as its magnitude, depth, and location. Users can interact with the map to zoom in and out and click on individual earthquake markers to see more details. Visit the live demo [HERE](https://earthquakes-chile-visualizer.netlify.app/).
 
 ## Technologies used
  - [React](https://es.reactjs.org/)
@@ -17,7 +17,9 @@ It uses a simple web scraper that fetches data from [Centro Sismológico Naciona
 
 To run this project, you will need to create an account on [Mapbox](https://www.mapbox.com/) and get your API TOKEN, then set an .env file in the root of the client directory with this variable:
 
-`REACT_APP_MAPBOX_TOKEN`="YOUR_API_TOKEN_HERE"
+```bash
+REACT_APP_MAPBOX_TOKEN="YOUR_MAPBOX_TOKEN_HERE"
+```
 
 Then, make sure to install dependencies in both client and server folders
 
