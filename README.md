@@ -17,7 +17,7 @@ It uses a simple web scraper that fetches data from [Centro Sismológico Naciona
 
 ## Running Locally
 
-To run this project, you will need to create an account on [Mapbox](https://www.mapbox.com/) and get your API TOKEN, then set an .env file in the root of the client directory with this variable:
+To run this project, you will need to create an account on [Mapbox](https://www.mapbox.com/) and get your API TOKEN, then set an .env file in the root of the client directory with the following variable:
 
 ```bash
 REACT_APP_MAPBOX_TOKEN="YOUR_MAPBOX_TOKEN_HERE"
