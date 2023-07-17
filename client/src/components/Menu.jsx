@@ -3,6 +3,7 @@ import ReactDatePicker, { registerLocale } from "react-datepicker";
 import Loader from "./Loader";
 import ErrorBox from "./ErrorBox";
 import es from 'date-fns/locale/es';
+
 registerLocale('es', es);
 
 function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelectedSource, isLoading, isActive, setIsActive }) {
@@ -36,7 +37,11 @@ function Menu({ data, selectedDate, setSelectedDate, selectedSource, setSelected
                                     selected={selectedDate}
                                     onChange={(date) => { setSelectedDate(date) }}
                                     dateFormat="dd-MM-yyyy"
-                                    maxDate={new Date()}
+                                    maxDate={(() => {
+                                        const currentDate = new Date()
+                                        currentDate.setDate(currentDate.getDate() + 1)
+                                        return currentDate
+                                    })()}
                                     onFocus={e => e.target.readOnly = true}
                                     portalId="root"
                                 />
